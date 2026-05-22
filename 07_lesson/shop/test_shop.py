@@ -5,6 +5,7 @@ from basket import Basket
 from Order import Order
 
 driver = webdriver.Firefox()
+driver.implicitly_wait(20)
 auth = Auth(driver)
 auth.authorization()
 
