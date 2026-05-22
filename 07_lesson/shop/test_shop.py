@@ -4,20 +4,23 @@ from MainPage import MainPage
 from basket import Basket
 from Order import Order
 
-driver = webdriver.Firefox()
-driver.implicitly_wait(20)
-auth = Auth(driver)
-auth.authorization()
 
-mainpage = MainPage(driver)
-mainpage.MP()
-mainpage.cart()
+def test_shop():
+  driver = webdriver.Firefox()
+  driver.implicitly_wait(20)
 
-basket = Basket(driver)
-basket.checkout()
+  auth = Auth(driver)
+  auth.authorization()
+  
+  mainpage = MainPage(driver)
+  mainpage.MP()
+  mainpage.cart()
+  
+  basket = Basket(driver)
+  basket.checkout()
+  
+  order = Order(driver)
+  order.YourInformation()
+  order.result()
 
-order = Order(driver)
-order.YourInformation()
-order.result()
-
-driver.quit()
+  driver.quit()
