@@ -115,3 +115,37 @@ def test_absence_haders():
         url+'/projects', json=project
         )
     assert resp.status_code == 401
+
+
+def test_get_with_invalid_id():
+    invalid_id = "invalid_id_123"
+    resp = requests.get(url + "/projects/" + invalid_id, headers=header)
+    # 1. Проверка статус-кода
+    assert resp.status_code == 404  # Или 400, зависит от API
+    # 2. Проверка сообщения об ошибке в теле ответа
+    error_body = resp.json()
+    assert "error" in error_body or "message" in error_body, (
+     "Тело ответа не содержит описание ошибки"
+    )
+
+
+def test_put_without_auth():
+    project = {
+        'title': 'проект',
+        'users': {'a91959fa-0614-4ef0-9dcd-220ae0a2493c': 'admin'}
+    }
+    resp = requests.post(url+'/projects', headers=header, json=project)
+    assert resp.status_code == 201
+    # Получаем id из ответа
+    project_id = resp.json()['id']
+    # Не передаём headers или передаём пустые
+    resp = requests.put(
+        url + "/projects/" + project_id,
+        json=project
+    )
+    assert resp.status_code == 401  # Unauthorized
+    # Обязательная проверка тела ошибки
+    error_body = resp.json()
+    assert "error" in error_body or "message" in error_body, (
+     "Нет сообщения об ошибке при 401"
+    )
