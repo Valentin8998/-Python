@@ -5,6 +5,8 @@ config.py
 __pycache__/
 *.py[codz]
 *$py.class
+auth.py
+settings.json
 
 # C extensions
 *.so
