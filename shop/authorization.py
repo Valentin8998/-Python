@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 import allure
 
 
 class Auth:
 
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver):
         self.driver = driver
         self.driver.get('https://www.saucedemo.com/')
 

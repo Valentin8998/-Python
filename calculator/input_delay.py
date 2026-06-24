@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 import allure
 
 
 class Delay:
 
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver):
         self._driver = driver
         self._driver.get(
             'https://bonigarcia.dev/selenium-webdriver'

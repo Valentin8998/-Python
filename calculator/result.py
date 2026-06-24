@@ -1,10 +1,11 @@
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 import allure
 
 
 class Result:
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver):
         self._driver = driver
 
     def res(self):

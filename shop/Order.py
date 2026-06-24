@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.remote.webdriver import WebDriver
 import allure
 
 
@@ -7,7 +8,7 @@ class Order:
     Этот класс отвечает за заполнение анкеты и проверки итоговой стоймости
     """
 
-    def __init__(self, driver):
+    def __init__(self, driver: WebDriver):
         self._driver = driver
 
     def YourInformation(self):
